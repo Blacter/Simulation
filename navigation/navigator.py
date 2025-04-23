@@ -2,7 +2,6 @@ from queue import Queue
 from copy import deepcopy
 
 from map import Map
-from navigation.adjacency_matrix import AdjacencyMatrix
 
 
 class Navigator:

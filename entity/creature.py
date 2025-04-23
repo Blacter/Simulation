@@ -11,11 +11,14 @@ class Creature(ABC, Entity):
     def __init__(self, coordinates: Coordinates, speed: int, hp: int) -> None:
         super().__init__(coordinates)
         self.__speed: int = speed
-        self._hp: int = hp
+        self._max_hp: int = hp
+        self._hp: int = self._max_hp
+        self._last_damage_done: int = 0
         self.path: list[Coordinates] | None = None
         self.grass_coordinates_to_go:  Coordinates | None = None
 
-    # @abstractmethod
+    
+    @abstractmethod
     def make_move(self, map: Map, direction: Coordinates, entity_type_to_search: Entity):
         
         # available_move_squares: set[Coordinates] = self.get_available_move_squares(
@@ -35,6 +38,14 @@ class Creature(ABC, Entity):
             new_coordinates = self.path.pop(0)
         map.move_creature(self.coordinates, new_coordinates)
         self.set_new_coordinates(new_coordinates)
+    
+    @property
+    def last_damage_done(self) -> int:
+        return self._last_damage_done
+    
+    @property
+    def hp(self) -> int:
+        return self._hp
         
     def set_new_coordinates(self, new_coordinates: Coordinates):
         self.coordinates = new_coordinates        
@@ -43,8 +54,7 @@ class Creature(ABC, Entity):
         result_squares: set[Coordinates] = self.get_squares_in_map_borders(map)
         result_squares = self.get_empty_squares(result_squares, map)
         
-        return result_squares
-        
+        return result_squares     
 
     def get_squares_in_map_borders(self, map) -> set[Coordinates]:
         # Squares around creature:
@@ -88,3 +98,22 @@ class Creature(ABC, Entity):
     def get_empty_squares(self, result_squares: set[Coordinates], map: Map) -> set[Coordinates]:
         return {square for square in result_squares if map.is_empty_square(square)}
     
+    def restore_hp(self, hp_to_restore: int):
+        if self._hp + hp_to_restore >= self._max_hp:
+            self._hp = self._max_hp
+        else:
+            self._hp += hp_to_restore
+    
+    def decrease_hp(self, damage: int):
+        self.define_last_damage_done(damage)
+        self._hp -= self.last_damage_done
+            
+    def get_damage(self, damage: int):        
+        self.decrease_hp(damage)
+        
+        
+    def define_last_damage_done(self, damage: int) -> int:
+        if self._hp <= damage:
+            self._last_damage_done = self._hp
+        else:            
+            self._last_damage_done =  damage

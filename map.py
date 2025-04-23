@@ -82,25 +82,25 @@ class Map:
                 return True
         return False
 
-    def get_neighbor_entity(self, coordinates: Coordinates, entity: Entity) -> Coordinates | None:
+    def get_neighbor_entity(self, coordinates: Coordinates, entity_type: Entity) -> Coordinates | None:
         x: int = coordinates.x
         y: int = coordinates.y
         result: bool = False
         # x-axis
         if x > 0:
-            if isinstance(self.__grid.get(Coordinates(x-1, y)), Grass):
+            if isinstance(self.__grid.get(Coordinates(x-1, y)), entity_type):
                 return Coordinates(x-1, y)
         if x < self.height - 1:
-            if isinstance(self.__grid.get(Coordinates(x+1, y)), Grass):
+            if isinstance(self.__grid.get(Coordinates(x+1, y)), entity_type):
                 return Coordinates(x+1, y)
         # y-axis
         if y > 0:
-            if isinstance(self.__grid.get(Coordinates(x, y-1)), Grass):
+            if isinstance(self.__grid.get(Coordinates(x, y-1)), entity_type):
                 return Coordinates(x, y-1)
         if y < self.width - 1:
-            if isinstance(self.__grid.get(Coordinates(x, y+1)), Grass):
+            if isinstance(self.__grid.get(Coordinates(x, y+1)), entity_type):
                 return Coordinates(x, y+1)
         return None
     
-    def destroy_grass(self, coordinates: Coordinates):
+    def destroy_entity(self, coordinates: Coordinates):
         del self.__grid[coordinates]

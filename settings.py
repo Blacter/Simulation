@@ -6,7 +6,7 @@ TREE_RARITY: float = 0.0 # 0.05
 GRASS_RARITY: float = 0.1 # 0.25
 
 HERBIVORE_RARITY: float = 0.05 # 0.05
-PREDATOR_RARITY: float = 0.00 # 0.02
+PREDATOR_RARITY: float = 0.05 # 0.02
 
 GRASS_HP: int = 20
 HERBIVORE_HP: int = 100

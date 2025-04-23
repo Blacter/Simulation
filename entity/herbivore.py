@@ -26,8 +26,7 @@ class Herbivore(Creature):
     
     def eat(self, map: Map, grass_coordinates: Coordinates) -> bool:
         self._hp += map.get_entity(grass_coordinates).hp
-        map.destroy_grass(grass_coordinates)
+        map.destroy_entity(grass_coordinates)
     
-    def get_damage(self, damage: int):
-        pass
+    
         
