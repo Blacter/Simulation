@@ -15,7 +15,7 @@ class Creature(ABC, Entity):
         self._hp: int = self._max_hp
         self._last_damage_done: int = 0
         self.path: list[Coordinates] | None = None
-        self.grass_coordinates_to_go:  Coordinates | None = None
+        self.entity_coordinates_to_go:  Coordinates | None = None
 
     
     @abstractmethod
@@ -28,10 +28,10 @@ class Creature(ABC, Entity):
         
         bfs: BFS = BFS(map)
         self.path = bfs.search_path_to_nearest_entity(self.coordinates, entity_type_to_search)
-        self.grass_coordinates_to_go = map.get_neighbor_entity(self.path[-1], Grass) # -1 -> последний элемент.
+        self.entity_coordinates_to_go = map.get_neighbor_entity_coordinates(self.path[-1], entity_type_to_search) # -1 -> последний элемент.
         
-        print(f'{self.grass_coordinates_to_go = }')
-        print(f'{self.path = }')        
+        # print(f'{self.entity_coordinates_to_go = }')
+        # print(f'{self.path = }')        
                 
         new_coordinates: Coordinates = self.path.pop(0)
         if new_coordinates == self.coordinates and len(self.path) != 0:
@@ -102,7 +102,7 @@ class Creature(ABC, Entity):
         if self._hp + hp_to_restore >= self._max_hp:
             self._hp = self._max_hp
         else:
-            self._hp += hp_to_restore
+            self._hp += hp_to_restore        
     
     def decrease_hp(self, damage: int):
         self.define_last_damage_done(damage)

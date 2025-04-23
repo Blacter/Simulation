@@ -82,7 +82,7 @@ class Map:
                 return True
         return False
 
-    def get_neighbor_entity(self, coordinates: Coordinates, entity_type: Entity) -> Coordinates | None:
+    def get_neighbor_entity_coordinates(self, coordinates: Coordinates, entity_type: Entity) -> Coordinates | None:
         x: int = coordinates.x
         y: int = coordinates.y
         result: bool = False
@@ -99,6 +99,24 @@ class Map:
                 return Coordinates(x, y-1)
         if y < self.width - 1:
             if isinstance(self.__grid.get(Coordinates(x, y+1)), entity_type):
+                return Coordinates(x, y+1)
+        return None
+    
+    def get_diagonally_neighbor_entity_coordinates(self, coordinates, entity_type) -> Coordinates | None:
+        x: int = coordinates.x
+        y: int = coordinates.y
+        result: bool = False
+        if x > 0:
+            if isinstance(self.__grid.get(Coordinates(x+1, y+1)), entity_type):
+                return Coordinates(x-1, y)
+        if x < self.height - 1:
+            if isinstance(self.__grid.get(Coordinates(x+1, y-1)), entity_type):
+                return Coordinates(x+1, y)
+        if y > 0:
+            if isinstance(self.__grid.get(Coordinates(x-1, y+1)), entity_type):
+                return Coordinates(x, y-1)
+        if y < self.width - 1:
+            if isinstance(self.__grid.get(Coordinates(x-1, y-1)), entity_type):
                 return Coordinates(x, y+1)
         return None
     

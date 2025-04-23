@@ -17,7 +17,10 @@ class Predator(Creature):
             super().make_move(map, herbivore_coordinates, Herbivore)
 
     def find_herbivore_in_neighbor_cell(self, map: Map) -> Coordinates:
-        return map.get_neighbor_entity(self.coordinates, Herbivore)
+        result: Coordinates = map.get_neighbor_entity_coordinates(self.coordinates, Herbivore)
+        # if result is None:
+        #     reslut: Coordinates = map.get_diagonally_neighbor_entity_coordinates(self.coordinates, Herbivore)
+        return result
 
     def can_attack(self, herbivore_coordinates: Coordinates):
         if herbivore_coordinates is None:

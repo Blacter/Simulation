@@ -8,14 +8,14 @@ GRASS_RARITY: float = 0.1 # 0.25
 HERBIVORE_RARITY: float = 0.05 # 0.05
 PREDATOR_RARITY: float = 0.05 # 0.02
 
-GRASS_HP: int = 20
+GRASS_HP: int = 40
 HERBIVORE_HP: int = 100
 PREDATOR_HP: int = 100
 
 HERBIVORE_SPEED: int = 1
 PREDATOR_SPEED: int = 2
 
-PREDATOR_DAMAGE: int = 50
+PREDATOR_DAMAGE: int = 60
 
 
 class Settings: # TODO maybe better to devide class into few small classes like Rock_Settings, Predator_Settings etc.

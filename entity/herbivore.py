@@ -17,7 +17,7 @@ class Herbivore(Creature):
             super().make_move(map, grass_coordinates, Grass)
         
     def find_grass_in_neighbor_cell(self, map: Map) -> Coordinates: # Grass in neighbor square (upper, left, rigth, down | NOT upper-left, upper-right etc.)
-        return map.get_neighbor_entity(self.coordinates, Grass)
+        return map.get_neighbor_entity_coordinates(self.coordinates, Grass)
     
     def can_eat(self, grass_coordinates: Coordinates | None) -> bool:
         if grass_coordinates is None:
@@ -25,7 +25,7 @@ class Herbivore(Creature):
         return True
     
     def eat(self, map: Map, grass_coordinates: Coordinates) -> bool:
-        self._hp += map.get_entity(grass_coordinates).hp
+        self.restore_hp(map.get_entity(grass_coordinates).hp)
         map.destroy_entity(grass_coordinates)
     
     

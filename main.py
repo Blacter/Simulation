@@ -15,7 +15,6 @@ if __name__ == '__main__':
     
     controll_symbols = ['', 'r']
     
-    
     simulation = Simulation(Settings())    
     render: Render = Render()
     render.render(simulation.map)

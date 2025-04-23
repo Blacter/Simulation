@@ -14,10 +14,11 @@ class Move:
         for entity_coordinates in map_grid:
             if isinstance(map.get_entity(entity_coordinates), Herbivore):
                 creature: Herbivore = map.get_entity(entity_coordinates)
-                print(creature.coordinates.x, creature.coordinates.y, "move.py Move move_creatures")
                 creature.make_move(map)
+                print(creature.coordinates.x, creature.coordinates.y, f"{creature.hp = },", type(creature))
                 
         for entity_coordinates in map.grid:
             if isinstance(map.get_entity(entity_coordinates), Predator):
                 creature: Predator = map.get_entity(entity_coordinates)
                 creature.make_move(map)
+                print(creature.coordinates.x, creature.coordinates.y, f"{creature.hp = }", type(creature))
