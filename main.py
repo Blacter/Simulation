@@ -27,8 +27,7 @@ if __name__ == '__main__':
         simulation.next_turn()
         render.render(simulation.map)
         # user_input = input()
-        sleep(1)
-        
+        sleep(1)        
     
     # simulation.next_turn()   
     

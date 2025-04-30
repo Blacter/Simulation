@@ -18,13 +18,14 @@ class Simulation:
     def __init__(self, settings: Settings) -> None:
         self.settings: Settings = settings
         self.init_map_action: InitMap = InitMap()
-        self.move_action: Move = Move()
-        self.map: Map = self.init_map_action.init_map(settings) 
+        self.map: Map = self.init_map_action.init_map() 
+        self.move_action: Move = Move(self.map)
         self.init_actions = []
         self.turn_actions = []
 
     def next_turn(self):
-        self.move_action.move_creatures(self.map)
+        self.move_action.move_all_creatures()
+        self.move_action.generate_new_entities()
 
     def start_simulation(self):        
         pass
