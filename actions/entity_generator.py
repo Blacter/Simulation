@@ -57,7 +57,8 @@ class EntityGenerator:
     def get_herbivore_entity(self, coordinates: Coordinates) -> Herbivore:
         herbivore_speed: int = self.settings.herbivore_speed
         herbivore_hp: int = self.settings.herbivore_hp
-        return Herbivore(coordinates, herbivore_speed, herbivore_hp)
+        result: Herbivore = Herbivore(coordinates, herbivore_speed, herbivore_hp)
+        return result
 
     def get_predator_entities(self, square_coordinates_stack: list[Coordinates]) -> list[Predator]:
         num_predator: int = self.settings.get_predator_initial_number()

@@ -1,12 +1,12 @@
-MAP_HEIGHT: int = 5
-MAP_WIDTH: int = 5
+MAP_HEIGHT: int = 8
+MAP_WIDTH: int = 8
 
-ROCK_RARITY: float = 0.3  # 0.05
-TREE_RARITY: float = 0.0  # 0.05
-GRASS_RARITY: float = 0.0  # 0.25
+ROCK_RARITY: float = 0.1  # 0.05
+TREE_RARITY: float = 0.1  # 0.05
+GRASS_RARITY: float = 0.2  # 0.25
 
-HERBIVORE_RARITY: float = 0.1  # 0.05
-PREDATOR_RARITY: float = 0.05  # 0.02
+HERBIVORE_RARITY: float = 0.04  # 0.05
+PREDATOR_RARITY: float = 0.02 # 0.02
 
 GRASS_HP: int = 60
 HERBIVORE_HP: int = 100

@@ -39,8 +39,8 @@ class Move:
                 
     def generate_grass(self) -> None:
         if (self.is_need_to_generate_grass()):
-            grass_coordinates: list[Coordinates] = self.map.get_random_empty_coordinates()
-            grass_entity = self.entity_generator.get_grass_entity(grass_coordinates)
+            grass_coordinates: list[Coordinates] = self.map.get_random_empty_coordinates()            
+            grass_entity: Grass = self.entity_generator.get_grass_entity(grass_coordinates)
             self.map.set_entity(grass_entity)
             
     def is_need_to_generate_grass(self) -> bool:
@@ -54,7 +54,10 @@ class Move:
     def generate_herbivore(self) -> None:
         if self.is_need_to_generate_herbivore():    
             herbivore_coordinates: list[Coordinates] = self.map.get_random_empty_coordinates()
-            herbivore_entity = self.entity_generator.get_herbivore_entity(herbivore_coordinates)
+            print(f'{herbivore_coordinates=}')
+            if herbivore_coordinates.x < 0 or herbivore_coordinates.y < 0:
+                print('negative coordinate')
+            herbivore_entity: Herbivore = self.entity_generator.get_herbivore_entity(herbivore_coordinates)
             self.map.set_entity(herbivore_entity)
     
     def is_need_to_generate_herbivore(self) -> bool:

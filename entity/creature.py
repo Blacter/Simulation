@@ -35,6 +35,11 @@ class Creature(ABC, Entity):
                 
         new_coordinates: Coordinates = self.path.pop(0)
         if new_coordinates == self.coordinates and len(self.path) != 0:
+            # for i in range(self.__speed): # Для будущей реализации механизма скорости.
+            #   if len(self.path) > 1:
+            #       self.path.pop(0)
+            #   else:
+            #       break
             new_coordinates = self.path.pop(0)
         map.move_creature(self.coordinates, new_coordinates)
         self.set_new_coordinates(new_coordinates)

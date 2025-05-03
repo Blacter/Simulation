@@ -56,16 +56,20 @@ class Map:
         if x > 0:
             if Coordinates(x-1, y) not in self.__grid:
                 result.append(Coordinates(x-1, y))
+                # print(f"({x-1}, {y});", end='')
         if x < self.height - 1:
             if Coordinates(x+1, y) not in self.__grid:
                 result.append(Coordinates(x+1, y))
+                # print(f"({x+1}, {y});", end='')
         # y-axis
         if y > 0:
             if Coordinates(x, y-1) not in self.__grid:
                 result.append(Coordinates(x, y-1))
+                # print(f"({x}, {y-1});", end='')
         if y < self.width - 1:
             if Coordinates(x, y+1) not in self.__grid:
                 result.append(Coordinates(x, y+1))
+                # print(f"({x}, {y+1});", end='')
         return result
 
     def is_neighbor_entity_near_coordinates(self, coordinates: Coordinates, entity_type: Entity) -> bool:
@@ -145,8 +149,9 @@ class Map:
     def get_random_empty_coordinates(self) -> Coordinates:
         number_of_empty_coordinates: int = self.map_size - self.get_number_of_entity_on_map(Entity)
         print(f'{self.map_size = } | {number_of_empty_coordinates = }')
-        coordinates_random_number: int = randint(0, number_of_empty_coordinates - 1)        
-        return self.get_empty_coordinates_by_number(coordinates_random_number)
+        coordinates_random_number: int = randint(1, number_of_empty_coordinates - 1)  
+        result: Coordinates = self.get_empty_coordinates_by_number(coordinates_random_number)
+        return result
     
     def get_empty_coordinates_by_number(self, number: int) -> Coordinates:
         coordinates_util: CoordinatesUtil = CoordinatesUtil()
