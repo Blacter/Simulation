@@ -26,7 +26,7 @@ class InitMap:
 
         map_settings: MapSettings = self.settings.get_map_settings()
         
-        empty_square_coordinates_stack: list[Coordinates] = self.coordinates_util.get_random_coordinates(
+        empty_square_coordinates_stack: list[Coordinates] = self.coordinates_util.get_random_coordinates( # FIXME: возможно стоит отразить в названии, что карта пуста и подходят любые координаты на ней
             total_entities, map_settings)
 
         entities: list = []

@@ -1,13 +1,9 @@
 from map import Map
 from coordinates import Coordinates
-from coordinates import CoordinatesUtil
 
-from entity.entity import Entity
 from entity.grass import Grass
-from entity.creature import Creature
 from entity.herbivore import Herbivore
 from entity.predator import Predator
-from actions.init_map import InitMap
 from settings import Settings
 
 from actions.entity_generator import EntityGenerator

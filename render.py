@@ -8,10 +8,16 @@ from entity.herbivore import Herbivore
 from entity.predator import Predator
 from printer import Sprites
 
+from settings import Settings
 
-# ? Хорошее ли это решение ? -> цель сделать неизменяемыми поля класса Sprites.
-sprites = Sprites()
+sprites: Sprites = Sprites()
 
+settings: Settings = Settings()
+
+horizontal_border_piece: str = '-'
+horizontal_border_lenght: int = 3*settings.map_width
+
+vertical_border_piece: str = '|'
 
 class Render:
     @staticmethod
@@ -40,8 +46,8 @@ class Render:
                 else:
                     print(
                         f'{Render.get_empty_square_sprite(Coordinates(i, j))}', end='')
-            print('|')
-        print('-'*20)
+            Render.print_vertical_border_piece()
+        Render.print_horizontal_map_border()
 
     @staticmethod
     def get_empty_square_sprite(coordinates: Coordinates) -> str:
@@ -49,3 +55,11 @@ class Render:
             return sprites.empty_square_sprite_one
         else:
             return sprites.empty_square_sprite_two
+        
+    @staticmethod
+    def print_horizontal_map_border() -> None:
+        print(horizontal_border_piece * horizontal_border_lenght)
+        
+    @staticmethod
+    def print_vertical_border_piece() -> None:
+        print(vertical_border_piece)

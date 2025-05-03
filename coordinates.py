@@ -33,13 +33,31 @@ class CoordinatesUtil:
 
     @staticmethod
     def get_random_coordinates(number_of_coordinates: int, map_settings: MapSettings) -> list[Coordinates]:
-        square_numbers = [i for i in range(map_settings.num_squares)] # get_empty_squares_number
+        square_numbers = CoordinatesUtil.get_random_coordinates_numbers(number_of_coordinates, map_settings)
+
+        # coordinates = []
+        # for square_number in square_numbers:
+        #     coordinates.append(CoordinatesUtil.get_coordinates_by_number(
+        #         square_number, map_settings))
+        coordinates: list[Coordinates] = CoordinatesUtil.get_coordinates_by_numbers(square_numbers, map_settings)
+
+        return coordinates
+
+    @staticmethod
+    def get_numbers(number_of_coordinates: int) -> list[int]:
+        return [i for i in range(number_of_coordinates)]
+    
+    @staticmethod
+    def get_random_coordinates_numbers(number_of_coordinates: int, map_settings: MapSettings) -> list[int]:
+        square_numbers = CoordinatesUtil.get_numbers(map_settings.num_squares) # get_empty_squares_number 
         shuffle(square_numbers)
         square_numbers = square_numbers[:number_of_coordinates]
-
-        coordinates = []
-        for square_number in square_numbers:
+        return square_numbers
+    
+    @staticmethod
+    def get_coordinates_by_numbers(numbers: list[int], map_settings: MapSettings) -> list[Coordinates]:
+        coordinates: list[Coordinates] = []
+        for number in numbers:
             coordinates.append(CoordinatesUtil.get_coordinates_by_number(
-                square_number, map_settings))
-
+                number, map_settings))
         return coordinates
