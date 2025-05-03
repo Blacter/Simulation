@@ -40,7 +40,11 @@ class Creature(ABC, Entity):
             #       self.path.pop(0)
             #   else:
             #       break
-            new_coordinates = self.path.pop(0)
+            for i in range(self.__speed):
+                if len(self.path) > 0:
+                    new_coordinates = self.path.pop(0)
+                else:
+                    break
         map.move_creature(self.coordinates, new_coordinates)
         self.set_new_coordinates(new_coordinates)
     
